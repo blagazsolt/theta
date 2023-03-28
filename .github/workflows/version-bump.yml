@@ -38,13 +38,7 @@ jobs:
       run: sed -i "s/version = \".*\"/version = \"$new_version\"/" build.gradle.kts
       
     - name: Commit changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Version Bump Action"
-        git commit -a -m "Bump version to $new_version"
-      
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.6.0
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        force: true
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        commit_message: "Sync from overleaf"
+        file_pattern: "build.gradle.kts"
