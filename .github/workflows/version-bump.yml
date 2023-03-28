@@ -31,11 +31,11 @@ jobs:
           "patch") new_version="${array[0]}.${array[1]}.$((array[2]+1))" ;;
           *) echo "Invalid version type" && exit 1 ;;
         esac
-        echo "New version: $new_version"
+        echo "new_version=$new_version" >> $GITHUB_ENV
 
       
     - name: Update version
-      run: sed -i "s/version = \".*\"/version = \"$new_version\"/" build.gradle.kts
+      run: sed -i "s/version = \".*\"/version = \"${{ env.new_version }}\"/" build.gradle.kts
       
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
