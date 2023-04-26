@@ -1,8 +1,8 @@
 name: Linux build
 
 on: 
- # push:
- # pull_request:
+  push:
+  pull_request:
   workflow_call:
   workflow_dispatch:
 
@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-20.04]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
@@ -19,12 +19,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.17
-        
-    - name: Using own build action
-      uses: ./.github/workflows/action
-    #- name: Build with Gradle
-    #  run: ./gradlew build
-    #- uses: actions/upload-artifact@v3
-    # with:
-    #      name: gradle-build
+    - uses: gradle/gradle-build-action@v2
+      with:
+        arguments: build
+    - uses: gradle/gradle-build-action@v2
+      with:
+          arguments: --scan
     
