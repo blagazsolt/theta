@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 package hu.bme.mit.theta.sts.aiger;
 
 import java.io.IOException;

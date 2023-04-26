@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 /*
  *  Copyright 2017 Budapest University of Technology and Economics
  *
@@ -84,4 +73,3 @@ public final class AigerCoi {
 		}
 	}
 }
-
