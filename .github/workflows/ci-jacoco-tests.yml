@@ -19,9 +19,9 @@ jobs:
         
       - uses: ./.github/workflows/action
       - name: Run Coverage
-        run: |
-          chmod +x gradlew
-          ./gradlew check
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: check
           
       - name: Run ls
         run: ls -R ${{ github.workspace }}/build/reports/
