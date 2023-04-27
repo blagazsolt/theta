@@ -15,7 +15,7 @@ jobs:
         with:
           java-version: 17
       - name: Run ls
-        run: ls -R ${{ github.workspace }}/build/reports/
+        run: ls -R | grep -E '(\.xml)$'
         
       - uses: ./.github/workflows/action
       - name: Run Coverage
