@@ -14,12 +14,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Run ls
+        run: ls -R ${{ github.workspace }}/build/reports/
+        
       - uses: ./.github/workflows/action
       - name: Run Coverage
         run: |
           chmod +x gradlew
           ./gradlew check
-
+          
+      - name: Run ls
+        run: ls -R ${{ github.workspace }}/build/reports/
+        
       - name: Add coverage to PR
         id: jacoco
         uses: madrapps/jacoco-report@v1.3
