@@ -8,7 +8,7 @@ runs:
       id: cache
       with:
         path: .
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-${{github.sha}}
       
     - name: build gradle
       if: steps.cache.outputs.cache-hit != 'true'
