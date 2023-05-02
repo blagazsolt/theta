@@ -28,4 +28,4 @@ jobs:
         Save-VcRedist -VcList $VcList
         Install-VcRedist -VcList $VcList -Silent
     - name: Build with Gradle
-      uses: ./.github/workflow/action
+      uses: ./.github/workflows/action
