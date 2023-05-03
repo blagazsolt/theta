@@ -2,6 +2,7 @@ name: Parallel App Build Workflow
 on: 
   push:
   pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
   workflow_call:
 jobs:
