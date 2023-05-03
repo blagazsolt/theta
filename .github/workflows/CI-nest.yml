@@ -1,0 +1,33 @@
+name: Parallel App Build Workflow
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.5.1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      - uses: ./.github/workflows/action 
+  integration-testing:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: blagazsolt/theta/.github/workflows/ci-sonar.yml@master
+  functional-testing:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: blagazsolt/theta/.github/workflows/ci-jacoco-tests.yml@master
+     
+#  deploy:
+#    needs: [integration-testing, functional-testing]
+#    runs-on: self-hosted
+#    steps:
+#      - run: |
+#          echo "Deploy Application"
+          # [...]
