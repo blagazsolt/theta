@@ -11,13 +11,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
-      - name: Cacheing
-        id: cache-workflow
-        uses: actions/cache@v3
-        with: 
-         path: .
-         key: ${{ github.sha }}-build-only-cache
       - name: Run build
-        if: steps.cache-workflow.outputs.cache-hit == 'false'
         uses: ./.github/workflows/action
      
