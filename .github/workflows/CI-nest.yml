@@ -15,14 +15,11 @@ jobs:
       - uses: ./.github/workflows/action 
   integration-testing:
     needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: blagazsolt/theta/.github/workflows/ci-sonar.yml@master
+    uses: blagazsolt/theta/.github/workflows/ci-sonar.yml@master
+       
   functional-testing:
     needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: blagazsolt/theta/.github/workflows/ci-jacoco-tests.yml@master
+    uses: blagazsolt/theta/.github/workflows/ci-jacoco-tests.yml@master
      
 #  deploy:
 #    needs: [integration-testing, functional-testing]
