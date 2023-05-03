@@ -1,0 +1,23 @@
+name: Gradle build
+on:
+  workflow_call:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.1
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      - name: Cacheing
+        id: cache-workflow
+        uses: actions/cache@v3
+        with:
+         path: build-only-cache
+         key: ${{ github.sha }}-build-only-cache
+      - name: Run build
+        if: steps.cache-workflow.outputs.cache-hit == 'false'
+        uses: ./.github/workflows/action
+     
