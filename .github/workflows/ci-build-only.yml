@@ -15,6 +15,7 @@ jobs:
         id: cache-workflow
         uses: actions/cache@v3
         with: 
+         path: .
          key: ${{ github.sha }}-build-only-cache
       - name: Run build
         if: steps.cache-workflow.outputs.cache-hit == 'true'
