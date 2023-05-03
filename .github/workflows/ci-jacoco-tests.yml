@@ -1,10 +1,10 @@
 name: Measure junit test coverage
 
 on:
-  pull_request:
+#  pull_request:
   workflow_dispatch:
   workflow_call:
-  push:
+#  push:
 
 jobs:
   build:
