@@ -18,6 +18,6 @@ jobs:
          path: build-only-cache
          key: ${{ github.sha }}-build-only-cache
       - name: Run build
-        if: steps.cache-workflow.outputs.cache-hit == 'false'
+        if: steps.cache-workflow.outputs.cache-hit == 'true'
         uses: ./.github/workflows/action
      
