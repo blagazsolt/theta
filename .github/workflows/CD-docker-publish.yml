@@ -21,6 +21,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Docker/theta-cfa-cli.Dockerfile
+          file: ./docker/theta-cfa-cli.Dockerfile
           push: true
           tags: premanent
