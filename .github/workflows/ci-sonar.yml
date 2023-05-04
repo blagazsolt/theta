@@ -23,6 +23,9 @@ jobs:
           java-version: 17
       - name: Pre-build
         uses: ./.github/workflows/action
+        
+      - name: Check ref
+        run: echo ${{github.ref}}
 #      - name: Cache SonarCloud packages
 #        uses: actions/cache@v1
 #        with:
