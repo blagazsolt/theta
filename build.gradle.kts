@@ -1,6 +1,7 @@
 plugins {
     base
     id("jacoco-common")
+    id("maven-publish")
     id("io.freefair.aggregate-javadoc") version "5.2"
     id("org.sonarqube") version "3.5.0.2730"
 }
@@ -24,6 +25,18 @@ allprojects {
 
     apply(from = rootDir.resolve("gradle/shared-with-buildSrc/mirrors.gradle.kts"))
 }
+
+publishing{
+  repositories {
+    maven {
+      name = "OSSRH"
+      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      credentials {
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
+      }
+    }
+  }
 
 evaluationDependsOnChildren()
 
@@ -60,5 +73,6 @@ tasks {
     check {
         dependsOn(test)
     }
+    
     
 }
