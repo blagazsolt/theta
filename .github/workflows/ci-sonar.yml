@@ -7,9 +7,7 @@ on:
 #  pull_request:
 #    types: [opened, synchronize, reopened]
   workflow_call:
-    secrets:
-      SONAR_TOKEN:
-        required: true
+    
 jobs:
   build:
     name: Build and analyze
