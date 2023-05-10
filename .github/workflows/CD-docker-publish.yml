@@ -32,3 +32,31 @@ jobs:
           file: ./docker/theta-cfa-cli.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker/theta-sts-cli.Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+          
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker/theta-xsts-cli.Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          
+          
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker/theta-xta-cli.Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}          
+          
+        
