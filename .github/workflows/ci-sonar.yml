@@ -48,4 +48,6 @@ jobs:
         with:
           arguments: build sonarqube --info -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=512m
           
+          
+          
      
