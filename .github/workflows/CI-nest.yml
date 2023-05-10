@@ -18,7 +18,6 @@ jobs:
     needs: build
     uses: blagazsolt/theta/.github/workflows/ci-sonar.yml@testing-parallel-workflow
     with: 
-       GITHUB_TOKEN: ${{GITHUB_TOKEN}}
        SONAR_TOKEN: ${{SONAR_TOKEN}}
        
        
