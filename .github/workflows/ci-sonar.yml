@@ -4,8 +4,13 @@ on:
   push:
 #    branches:
 #      - master
-  pull_request:
-    types: [opened, synchronize, reopened]
+#  pull_request:
+#    types: [opened, synchronize, reopened]
+  workflow_call:
+    secrets:
+      token:
+        required: true
+    
 jobs:
   build:
     name: Build and analyze
@@ -19,23 +24,31 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-      - name: Cache Gradle packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+      - name: Pre-build
+        uses: ./.github/workflows/action
+        
+      - name: Check ref
+        run: echo ${{github.ref}}
+#      - name: Cache SonarCloud packages
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar
+#          restore-keys: ${{ runner.os }}-sonar
+#      - name: Cache Gradle packages
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.gradle/caches
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+#          restore-keys: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.token }}
         uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: build sonarqube --info -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=512m
+          
+          
+          
+     
