@@ -1,0 +1,31 @@
+name: Publish project
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.5.1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      - uses: ./.github/workflows/action
+      
+  publish-docker:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: blagazsolt/theta/.github/workflows/CD-docker-publish.yml@master
+      
+  publish-release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: blagazsolt/theta/.github/workflows/create_release.yml@master
+      
+      
+#  palceholder for maven
+#  publis-maven:
+#    needs: build
+#    runs-on: ubuntu-latest
