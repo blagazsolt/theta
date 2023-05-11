@@ -33,7 +33,7 @@ jobs:
           images: blagazsolt/theta
           tags: |
             type=raw, value=theta-cfa-cli
-            type=raw, value=${{version}}
+            type=raw, value=$version
           
       - name: Build and push
         uses: docker/build-push-action@v4
