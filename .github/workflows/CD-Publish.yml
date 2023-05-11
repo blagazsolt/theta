@@ -17,7 +17,7 @@ jobs:
     uses: blagazsolt/theta/.github/workflows/CD-docker-publish.yml@master
     secrets:
        username: ${{DOCKER_USERNAME}}
-       token: ${{DOCKER_TOKEN}}
+       token: ${{DOCKERHUB_TOKEN}}
       
   publish-release:
     needs: build
