@@ -17,8 +17,8 @@ jobs:
   integration-testing:
     needs: build
     uses: blagazsolt/theta/.github/workflows/ci-sonar.yml@testing-parallel-workflow
-    with: 
-      sonar-secret: ${{secrets.SONAR_TOKEN}}
+    secrets:
+      token: ${{ secrets.SONAR_TOKEN }}
        
        
   functional-testing:
