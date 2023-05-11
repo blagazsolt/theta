@@ -18,14 +18,7 @@ jobs:
           
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-        
-      - name: version
-        run: |
-             version=$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')
-             IFS='.' read -r -a array <<< "$version"
-      - name: echo version
-        run: | 
-          echo "Version: $version"
+     
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
@@ -33,7 +26,6 @@ jobs:
           images: blagazsolt/theta
           tags: |
             type=raw, value=theta-cfa-cli
-            type=raw, value=$version
           
       - name: Build and push
         uses: docker/build-push-action@v4
