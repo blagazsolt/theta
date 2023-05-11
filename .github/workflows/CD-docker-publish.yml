@@ -26,7 +26,7 @@ jobs:
           images: blagazsolt/theta
           tags: |
             type=raw, value=theta-cfa-cli
-            type=raw, value=$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')
+         
           
       - name: Build and push
         uses: docker/build-push-action@v4
