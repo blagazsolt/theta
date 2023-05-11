@@ -5,7 +5,7 @@ on:
   release:
     types: [published]
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,11 +19,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
         
+      - name: version
+        run: |
+             version=$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')
+             IFS='.' read -r -a array <<< "$version"
+         
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: blagazsolt/theta
+          tags: |
+            type=raw, value=theta-cfa-cli
+            type=raw, value=${{version}}
           
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -32,31 +40,5 @@ jobs:
           file: ./docker/theta-cfa-cli.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./docker/theta-sts-cli.Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-
-          
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./docker/theta-xsts-cli.Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          
-          
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./docker/theta-xta-cli.Dockerfile
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}          
-          
+  
         
