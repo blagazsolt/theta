@@ -1,0 +1,15 @@
+name: 'Login to DockerHub'
+description: 'Login to DockerHub by using the secrets, and use it in reusable-workflow'
+runs: 
+  using: composit
+  steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+     - name: Login to Docker Hub
+       uses: docker/login-action@v2
+       with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+     - name: Set up Docker Buildx
+       uses: docker/setup-buildx-action@v2
