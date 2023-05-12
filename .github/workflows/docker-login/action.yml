@@ -1,7 +1,7 @@
 name: 'Login to DockerHub'
 description: 'Login to DockerHub by using the secrets, and use it in reusable-workflow'
 runs: 
-  using: composit
+  using: "composite"
   steps:
      - name: Checkout
        uses: actions/checkout@v3
