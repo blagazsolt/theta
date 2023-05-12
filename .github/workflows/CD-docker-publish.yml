@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: .\.github\workflows\docker-login\action.yml@master
+      - uses: ./.github/workflows/docker-login
         
       - name: Extract metadata (tags, labels) for Docker
         id: meta
