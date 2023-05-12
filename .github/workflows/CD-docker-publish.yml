@@ -17,7 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - uses: ./.github/workflows/docker-login
-        
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          token: ${{secrets.DOCKERHUB_PASSWORD}}
+            
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
