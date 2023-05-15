@@ -1,6 +1,8 @@
 name: "Check formatting of .java files"
 
 on:
+  push:
+  pull_request:
   workflow_call:
     
 jobs:
