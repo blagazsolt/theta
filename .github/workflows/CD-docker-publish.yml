@@ -19,7 +19,7 @@ jobs:
       - uses: ./.github/workflows/docker-login
         with:
           token2: ${{secrets.DOCKERHUB_PASSWORD}}
-          username2: ${{secrets.DOCKER_USERNAME}}
+        #  username2: ${{secrets.DOCKER_USERNAME}}
           
             
       - name: Extract metadata (tags, labels) for Docker
