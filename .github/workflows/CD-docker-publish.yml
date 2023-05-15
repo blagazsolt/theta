@@ -20,13 +20,7 @@ jobs:
         with:
           token: ${{secrets.DOCKERHUB_TOKEN}}
           username: ${{secrets.DOCKER_USERNAME}}
-          
-            
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: blagazsolt/theta
+          tag: "theta-cfa-cli"
           
       - name: Build and push
         uses: docker/build-push-action@v4
