@@ -3,8 +3,8 @@ description: 'Login to DockerHub by using the secrets, and use it in reusable-wo
 inputs:
     token2:
         required: true
-    username2:
-        required: true
+   # username2:
+    #    required: true
 runs: 
   using: "composite"
   steps:
