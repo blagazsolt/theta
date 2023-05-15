@@ -18,8 +18,8 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/workflows/docker-login
         with:
-          token: ${{secrets.DOCKERHUB_TOKEN}}
-          username: ${{secrets.DOCKER_USERNAME}}
+          token: ${{secrets.token}}
+          username: ${{secrets.username}}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4.4.0
@@ -41,8 +41,8 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/workflows/docker-login
         with:
-          token: ${{secrets.DOCKERHUB_TOKEN}}
-          username: ${{secrets.DOCKER_USERNAME}}
+          token: ${{secrets.token}}
+          username: ${{secrets.username}}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4.4.0
@@ -64,8 +64,8 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/workflows/docker-login
         with:
-          token: ${{secrets.DOCKERHUB_TOKEN}}
-          username: ${{secrets.DOCKER_USERNAME}}
+          token: ${{secrets.token}}
+          username: ${{secrets.username}}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4.4.0
@@ -77,7 +77,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/ theta-xsts-cli.Dockerfile
+          file: ./docker/theta-xsts-cli.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
   theta-xta-cli:
@@ -87,8 +87,8 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/workflows/docker-login
         with:
-          token: ${{secrets.DOCKERHUB_TOKEN}}
-          username: ${{secrets.DOCKER_USERNAME}}
+          token: ${{secrets.token}}
+          username: ${{secrets.username}}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4.4.0
