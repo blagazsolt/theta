@@ -5,8 +5,6 @@ inputs:
         required: true
     username:
         required: true
-    tag:
-        required: true
 runs: 
   using: "composite"
   steps:
