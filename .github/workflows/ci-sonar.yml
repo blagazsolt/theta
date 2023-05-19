@@ -47,7 +47,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.token }}
         uses: gradle/gradle-build-action@v2.4.2
         with:
-          arguments: build sonarqube --info -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=512m
+          arguments: build test jacocoTestReport sonarqube --info -Dorg.gradle.jvmargs=-XX:MaxMetaspaceSize=512m
           
           
           
