@@ -1,15 +1,13 @@
 name: Measure junit test coverage
 
 on:
-  pull_request:
+#  pull_request:
   workflow_dispatch:
-  push:
+  workflow_call:
+#  push:
 
 jobs:
-  waiting_pre_build:
-    uses: blagazsolt/theta/.github/workflows/ci-build-only.yml@master 
   build:
-    needs: waiting_pre_build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
